@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uses &amp; Tips — Wipe Wizard</title>
+<meta name="description" content="Everywhere Wipe Wizard works, plus tips for grout, shoes, and getting the most out of every pad.">
+<style>
+/* ==========================================================================
+   WIPE WIZARD — brand tokens
+   Blue + yellow pulled straight off the packaging, plus a deep ink for
+   contrast and a soft foam grey for breathing room between blue sections.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root{
+  --wizard-blue: #1B3FE0;
+  --wizard-blue-deep: #10247A;
+  --ink-navy: #0A1440;
+  --wizard-yellow: #FFD400;
+  --spark-gold: #FFEB80;
+  --foam-grey: #F1F3FC;
+  --cloud-white: #FFFFFF;
+
+  --font-display: 'Fredoka', system-ui, sans-serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+
+  --radius-lg: 28px;
+  --radius-md: 16px;
+
+  --max-width: 1160px;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink-navy);
+  background: var(--cloud-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img{ max-width: 100%; display: block; }
+
+a{ color: inherit; }
+
+h1, h2, h3{
+  font-family: var(--font-display);
+  margin: 0 0 0.4em;
+  line-height: 1.05;
+}
+
+p{ line-height: 1.6; }
+
+.wrap{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- buttons ---------- */
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover{ transform: translateY(-2px); }
+.btn:active{ transform: translateY(0); }
+.btn:focus-visible{ outline: 3px solid var(--wizard-blue); outline-offset: 3px; }
+
+.btn-yellow{
+  background: var(--wizard-yellow);
+  color: var(--ink-navy);
+  box-shadow: 0 6px 0 #C79E00;
+}
+.btn-yellow:hover{ box-shadow: 0 8px 0 #C79E00; }
+.btn-yellow:active{ box-shadow: 0 3px 0 #C79E00; }
+
+.btn-outline{
+  background: transparent;
+  border-color: var(--cloud-white);
+  color: var(--cloud-white);
+}
+.btn-outline:hover{ background: rgba(255,255,255,0.12); }
+
+.btn-outline-dark{
+  background: transparent;
+  border-color: var(--wizard-blue);
+  color: var(--wizard-blue);
+}
+.btn-outline-dark:hover{ background: rgba(27,63,224,0.08); }
+
+/* ---------- nav ---------- */
+
+.site-header{
+  background: var(--wizard-blue);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 4px solid var(--wizard-yellow);
+}
+
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--cloud-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-star{
+  color: var(--wizard-yellow);
+  font-size: 1.1rem;
+}
+
+.nav-links{
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a{
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--cloud-white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-links a:hover{ background: rgba(255,255,255,0.14); }
+
+.nav-links a.active{
+  background: var(--wizard-yellow);
+  color: var(--ink-navy);
+  font-weight: 600;
+}
+
+.nav-toggle{
+  display: none;
+  background: none;
+  border: 2px solid var(--cloud-white);
+  border-radius: 10px;
+  color: var(--cloud-white);
+  font-size: 1.3rem;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer{
+  background: var(--ink-navy);
+  color: rgba(255,255,255,0.75);
+  padding: 40px 0 28px;
+  margin-top: 100px;
+}
+
+.footer-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-brand{
+  font-family: var(--font-display);
+  color: var(--cloud-white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.footer-links{
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links a{ text-decoration: none; color: rgba(255,255,255,0.75); }
+.footer-links a:hover{ color: var(--wizard-yellow); }
+
+.footer-fine{
+  margin-top: 28px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 18px;
+}
+
+/* ---------- generic section helpers ---------- */
+
+.section{ padding: 80px 0; }
+.section-tight{ padding: 56px 0; }
+
+.section-blue{
+  background: var(--wizard-blue);
+  color: var(--cloud-white);
+}
+
+.section-grey{ background: var(--foam-grey); }
+
+.section-heading{
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.section-heading .eyebrow{ color: var(--wizard-blue); margin-bottom: 10px; }
+.section-blue .section-heading .eyebrow{ color: var(--wizard-yellow); }
+
+.section-heading h2{ font-size: clamp(1.7rem, 3.4vw, 2.4rem); color: var(--ink-navy); }
+.section-blue .section-heading h2{ color: var(--cloud-white); }
+
+@media (max-width: 780px){
+  .nav-links{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--wizard-blue-deep);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    display: none;
+    border-bottom: 4px solid var(--wizard-yellow);
+  }
+  .nav-links.open{ display: flex; }
+  .nav-links a{ text-align: center; }
+  .nav-toggle{ display: inline-block; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+
+/* ---- page-specific ---- */
+
+/* ================= USES PAGE HERO ================= */
+
+.page-hero{
+  padding: 56px 0 64px;
+  text-align: center;
+}
+.page-hero .eyebrow{ color: var(--wizard-yellow); justify-content: center; }
+.page-hero h1{ color: var(--cloud-white); font-size: clamp(2.2rem, 5vw, 3.2rem); }
+.page-hero p{ color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto; }
+
+/* ================= USE AREAS ================= */
+
+.use-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.use-area{
+  scroll-margin-top: 96px;
+  background: var(--cloud-white);
+  border: 1px solid rgba(10,20,64,0.08);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(10,20,64,0.06);
+}
+
+.use-area .use-icon-lg{
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--foam-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.use-area h3{ font-size: 1.15rem; margin-bottom: 8px; }
+.use-area p{ margin: 0; color: #4A5480; font-size: 0.96rem; }
+
+/* ================= TIPS ================= */
+
+.tips-list{
+  display: grid;
+  gap: 16px;
+}
+
+.tip{
+  display: flex;
+  gap: 16px;
+  background: var(--cloud-white);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  box-shadow: 0 10px 30px rgba(10,20,64,0.06);
+  border-left: 5px solid var(--wizard-yellow);
+}
+
+.tip .tip-mark{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--wizard-blue);
+  flex-shrink: 0;
+}
+
+.tip h3{ font-size: 1.02rem; margin-bottom: 4px; }
+.tip p{ margin: 0; color: #4A5480; font-size: 0.95rem; }
+
+/* ================= SAFETY ================= */
+
+.safety-panel{
+  background: var(--ink-navy);
+  color: rgba(255,255,255,0.9);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+}
+
+.safety-panel h2{ color: var(--cloud-white); }
+.safety-panel .eyebrow{ color: var(--wizard-yellow); }
+
+.safety-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.safety-col h3{
+  font-size: 1rem;
+  color: var(--wizard-yellow);
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+}
+
+.safety-col ul{
+  margin: 0;
+  padding-left: 20px;
+}
+.safety-col li{
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.55;
+}
+
+.composition-note{
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.7);
+}
+
+@media (max-width: 780px){
+  .use-grid{ grid-template-columns: 1fr; }
+  .safety-grid{ grid-template-columns: 1fr; }
+  .safety-panel{ padding: 30px; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="brand"><span class="brand-star">✦</span> Wipe Wizard</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="uses.html" class="active">Uses &amp; Tips</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero section-blue">
+    <div class="wrap">
+      <span class="eyebrow">✦ The full spellbook ✦</span>
+      <h1>Everywhere the magic works</h1>
+      <p>From soap scum to scuff marks, here's where Wipe Wizard earns its name — and how to get the most out of every pad.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-heading">
+        <span class="eyebrow">Effective uses</span>
+        <h2>Built for hard surfaces around the house</h2>
+      </div>
+      <div class="use-grid">
+        <div class="use-area" id="bathroom">
+          <div class="use-icon-lg">🚿</div>
+          <h3>Bathroom surfaces</h3>
+          <p>Glass shower doors and ceramic tiles come up clear. Also great on soap scum and hard water stains.</p>
+        </div>
+        <div class="use-area" id="shoes">
+          <div class="use-icon-lg">👟</div>
+          <h3>Sneakers &amp; outdoor gear</h3>
+          <p>Freshen up sneakers, patio furniture, and grill grates without a drop of chemical cleaner.</p>
+        </div>
+        <div class="use-area" id="walls">
+          <div class="use-icon-lg">🖼️</div>
+          <h3>Walls, baseboards &amp; doors</h3>
+          <p>Lift scuffs and crayon marks off walls, skirting boards and doors without damaging paintwork.</p>
+        </div>
+        <div class="use-area" id="stoves">
+          <div class="use-icon-lg">🔥</div>
+          <h3>Kitchen appliances &amp; stovetops</h3>
+          <p>Cuts through grease and burnt-on food on stovetops and other kitchen appliances.</p>
+        </div>
+        <div class="use-area" id="floors">
+          <div class="use-icon-lg">🧹</div>
+          <h3>Floors</h3>
+          <p>Tackle scuffed tile and grout lines — pair with the grout tip below for stubborn stains.</p>
+        </div>
+        <div class="use-area" id="kitchens">
+          <div class="use-icon-lg">🍳</div>
+          <h3>Kitchens</h3>
+          <p>Countertops, splashbacks and hobs — anywhere everyday grease and grime builds up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-grey">
+    <div class="wrap">
+      <div class="section-heading">
+        <span class="eyebrow">Pro tips</span>
+        <h2>Get more out of every pad</h2>
+      </div>
+      <div class="tips-list">
+        <div class="tip">
+          <span class="tip-mark">✦</span>
+          <div>
+            <h3>Grout gone gray?</h3>
+            <p>For tough grout stains, sprinkle on baking soda, mist with water, and scrub with Wipe Wizard for like-new results.</p>
+          </div>
+        </div>
+        <div class="tip">
+          <span class="tip-mark">✦</span>
+          <div>
+            <h3>Make it last</h3>
+            <p>Cut a pad into smaller pieces to extend its use across several smaller jobs instead of one whole pad at a time.</p>
+          </div>
+        </div>
+        <div class="tip">
+          <span class="tip-mark">✦</span>
+          <div>
+            <h3>Save the scraps for tough jobs</h3>
+            <p>Wipe Wizard can wear down quickly on rough surfaces like shoe rubber. Keep the residual pieces from other jobs and use them near the end of their life for tasks like this.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="safety-panel">
+        <span class="eyebrow">Safety &amp; composition</span>
+        <h2>Good to know before you scrub</h2>
+        <div class="safety-grid">
+          <div class="safety-col">
+            <h3>What it's made of</h3>
+            <ul>
+              <li>Wipe Wizard is made from melamine foam, a non-toxic plastic polymer.</li>
+              <li>It contains no added fragrance, bleach, or alcohol.</li>
+              <li>Not recommended for dishes — it can leave residue behind.</li>
+            </ul>
+          </div>
+          <div class="safety-col">
+            <h3>Precautions</h3>
+            <ul>
+              <li>Avoid high-gloss, polished or dark surfaces — stainless steel, copper, non-stick coatings and vehicle exteriors can dull or scratch.</li>
+              <li>Don't use on skin, as it can cause abrasions.</li>
+              <li>Keep away from toddlers and pets to prevent ingestion.</li>
+              <li>Never pair with bleach or alcohol-based products — this will damage the pad.</li>
+              <li>Wipe Wizard cleans through abrasion — always test a non-visible area first.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="composition-note">Contains 3 foam pads. Packed by The House of Yummy (Pty) Ltd, Wynberg, Cape Town, 7800.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-banner">
+        <div>
+          <h2>Got a question about using it?</h2>
+          <p>Send us a message and we'll get back to you.</p>
+        </div>
+        <a href="contact.html" class="btn btn-outline-dark">Contact us</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ Wipe Wizard</div>
+        <p style="max-width:320px;">Packed by The House of Yummy (Pty) Ltd, Wynberg, Cape Town, 7800.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="uses.html">Uses &amp; Tips</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-fine">© <span id="year"></span> The House of Yummy (Pty) Ltd. Wipe Wizard cleans through abrasion — always test a non-visible area first.</div>
+  </div>
+</footer>
+
+<script>
+// ---------- mobile nav toggle ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  // ---------- before / after reveal slider ----------
+  const stage = document.querySelector('.reveal-stage');
+  if (stage) {
+    const before = stage.querySelector('.reveal-before');
+    const handle = stage.querySelector('.reveal-handle');
+    const range = stage.querySelector('.reveal-range');
+
+    const setReveal = (value) => {
+      // value: 0-100, percentage of "clean" revealed from the left
+      before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
+      range.value = value;
+    };
+
+    range.addEventListener('input', (e) => setReveal(Number(e.target.value)));
+
+    // gentle auto demo on load so first-time visitors notice it's interactive
+    let demo = 50;
+    let direction = 1;
+    let demoFrame;
+    const runDemo = () => {
+      demo += direction * 0.35;
+      if (demo > 78 || demo < 22) direction *= -1;
+      setReveal(demo);
+      demoFrame = requestAnimationFrame(runDemo);
+    };
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      demoFrame = requestAnimationFrame(runDemo);
+    } else {
+      setReveal(50);
+    }
+
+    const stopDemo = () => cancelAnimationFrame(demoFrame);
+    ['pointerdown', 'touchstart'].forEach(evt =>
+      stage.addEventListener(evt, stopDemo, { once: true })
+    );
+  }
+
+  // ---------- swap in the mascot PNG if present, else keep the CSS fallback ----------
+  const mascot = document.querySelector('.stage-mascot');
+  if (mascot) {
+    mascot.addEventListener('error', () => {
+      mascot.style.display = 'none';
+      const fallback = document.querySelector('.stage-fallback');
+      if (fallback) fallback.style.display = 'block';
+    });
+  }
+});
+
+</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
